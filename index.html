@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  <title>高级四</title>
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_hr8nuvu7en3cv7vi.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .float {
+      float: left;
+    }
+
+    .layout {
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    .chearfix:after {
+      content: " ";
+      display: block;
+      clear: both;
+    }
+    /*carousel*/
+
+    .img-ct,
+    .bullet {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-ct {
+      position: absolute;
+      width: 500%;
+    }
+
+    .img-ct>li {
+      float: left;
+      width: 20%;
+      height: 100%;
+    }
+
+    .img-ct img {
+      width: 100%;
+    }
+
+    .btn {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      line-height: 30px;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .btn:hover {
+      opacity: .8;
+    }
+
+    .pre {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .bullet {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0;
+      text-align: center;
+    }
+
+    .bullet>li {
+      display: inline-block;
+      border: 1px solid #fff;
+      width: 30px;
+      height: 5px;
+      border-radius: 4px;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #00a1d6;
+    }
+    /*lazy*/
+
+    #photo {
+      padding:  75px 50px;
+      text-align: center;
+    }
+
+    #photo a{
+      display: inline-block;
+      margin-top: 50px;
+      height: 50px;
+      width: 100px;
+      color: #fff;
+      border-radius: 5px;
+      line-height: 50px;
+      background-color: #00a1d6;
+    }
+
+    .lazy {
+      margin-top: 70px;
+      position: relative;
+      width: 100%;
+    }
+
+    .lazy li {
+      margin: 5px;
+      position: absolute;
+      transition: all 1s;
+      opacity: 0;
+    }
+    /*head*/
+
+    #header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    #header>.navbar {
+      position: fixed;
+      width: 90%;
+      min-height: 50px;
+      left: 0;
+      right: 0;
+      line-height: 50%;
+      margin: 0 auto;
+      padding: 25px;
+      background-color: transparent;
+      z-index: 1;
+    }
+
+    #header>.navbar>.layout>a {
+      float: left;
+      color: #1296db;
+      font-size: 42px;
+      text-shadow: 3px 2px 2px #ccc;
+      font-style: italic;
+      height: 100%;
+    }
+
+    #header>.navbar>.layout>a:hover {
+      opacity: .4;
+    }
+
+    .navbar>.layout>ul {
+      float: right;
+    }
+
+    .navbar>.layout>ul>li {
+      float: left;
+      margin: 5px;
+    }
+
+    .navbar>.layout>ul>li>a {
+      color: #71C1E9;
+      text-shadow: 3px 2px 2px #ccc;
+      font-size: 16px;
+      height: 100%;
+    }
+
+    .navbar>.layout>ul>li>a:hover {
+      background-color: #ccc;
+      opacity: .3;
+      border-radius: 5px;
+    }
+
+    #services,
+    #portfolio,
+    #about,
+    #team {
+      padding: 75px 0;
+    }
+
+    #services>h1,
+    #portfolio>div>h1,
+    #photo>h1,
+    #about>h1,
+    #team>div>h1 {
+      margin-bottom: 20px;
+    }
+
+    #services>p,
+    #portfolio>div>p,
+    #about>p,
+    #team>div>p {
+      margin: 25px 0 75px 0;
+      font-style: italic;
+    }
+
+    #services>div>div {
+      float: left;
+      width: 33.3%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #services,
+    #photo,
+    #team {
+      background-color: #f7f7f7;
+    }
+
+    .wrap {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 33.3%;
+      padding: 10px;
+      margin-bottom: 30px;
+      float: left;
+    }
+
+    .wrap>a,
+    .wrap>a>img {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .wrap>a:hover {
+      opacity: .6;
+    }
+
+    .info {
+      background-color: #fff;
+      width: 100%;
+      display: inline-block;
+    }
+
+    #about>p {
+      margin-bottom: 60px;
+    }
+
+    #about>ul>li>img {
+      display: inline-block;
+      border-radius: 50%;
+      border: 7px solid #ccc;
+      width: 300px;
+      height: 169px;
+    }
+
+    #about>ul>li {
+      position: relative;
+      padding: 0 0 180px 0;
+      height: 169px;
+    }
+
+    #about>ul>li:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      border-left: 3px solid #ccc;
+      height: 100%;
+      z-index: -1;
+    }
+
+    #about>ul>li:last-child {
+      padding-bottom: 0;
+    }
+
+    .summary {
+      width: 25em;
+      margin-right: 165px;
+      position: absolute;
+      top: 0px;
+      right: 50%;
+      text-align: right;
+    }
+
+    #about>ul>li:nth-child(even)>.summary {
+      left: 50%;
+      margin-left: 165px;
+      text-align: left;
+    }
+
+    #about>ul>li:last-child>div {
+      display: inline-block;
+      border-radius: 50%;
+      border: 7px solid #ccc;
+      width: 300px;
+      height: 169px;
+      background-color: #325391;
+      line-height: 169px;
+      color: #f7f7f7;
+      font-weight: bold;
+    }
+
+    #team>div>ul>li>img {
+      width: 225px;
+      border-radius: 50%;
+      border: 7px solid #fff;
+      margin: 0 auto;
+    }
+
+    #team .iconfont,
+    #footer .iconfont {
+      color: #aaa;
+      font-size: 36px;
+    }
+
+    #team ul {
+      padding: 0;
+    }
+
+    #team>div>ul>li>div {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    #team>div>ul>li {
+      width: 33.3333%;
+    }
+
+    #team>div>ul>li>div>ul>li {
+      display: inline-block;
+      padding: 0 5px;
+    }
+
+    #team>div>ul>li>div>ul>li>a:hover {
+      opacity: .3;
+    }
+
+    #link {
+      background-color: #fff;
+    }
+
+    #link>div>ul {
+      padding: 0;
+      margin: 80px 0;
+    }
+
+    #link>div>ul>li {
+      display: inline-block;
+      width: 24%;
+    }
+
+    #contact-us {
+      background: no-repeat url(http://pic2.52pk.com/files/allimg/170919/1JF5E60-3.jpg);
+      background-size: 100%;
+      height: 746px;
+      overflow: hidden;
+    }
+
+    .c-font {
+      color: #ccc;
+      margin-top: 70px;
+    }
+
+    .c-font>p {
+      margin-top: 50px;
+      font-style: italic;
+      margin-bottom: 100px;
+    }
+
+    .c-form {
+      height: 236px;
+    }
+
+    .c-form ul {
+      padding: 0 20px;
+      width: 47%;
+      height: 100%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .c-form ul>li {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .c-form ul>li>input[type=text] {
+      display: inline-block;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .c-textarea {
+      padding: 20px;
+      width: 45%;
+      height: 169px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .c-button {
+      outline: 0;
+      border-radius: 5px;
+      background-color: #1296db;
+      border-color: #1296db;
+      color: #ccc;
+      display: inline-block;
+      width: 250px;
+      height: 80px;
+      line-height: 80px;
+      cursor: pointer;
+    }
+
+    .f-font>ul {
+      margin: 20px 0;
+      padding: 0;
+    }
+
+    .f-font ul>li {
+      display: inline-block;
+    }
+
+    .f-font>ul>li {
+      width: 32.33%;
+    }
+
+    .f-font .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .f-font a {
+      color: #1296db;
+      margin: 0 10px;
+    }
+
+    .f-font a:hover {
+      opacity: .6;
+    }
+    #gotop{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 50px;
+      line-height: 50px;
+      width: 50px;
+      background-color: #ccc;
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header">
+    <div class="navbar">
+      <div class="layout chearfix">
+        <a href="#">Start Bootstrap</a>
+        <ul>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#portfolio">PORTFOLIO</a></li>
+          <li><a href="#photo">PHOTO</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#team">TEAM</a></li>
+          <li><a href="#contact-us">CONTACT</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--carousel-->
+    <div class="carousel">
+      <ul class="img-ct cheakfix">
+        <li data-id=0>
+          <a href="#"><img src="http://pic2.52pk.com/files/allimg/170919/1JF52K7-0.jpg"></a>
+        </li>
+        <li data-id=1>
+          <a href="#"><img src="http://pic.k73.com/up/article/2015/0916/114014_72957665.jpg"></a>
+        </li>
+        <li data-id=2>
+          <a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507800548&di=ad5f5a486e8a0c48cfaa1c1d1adfe1b3&imgtype=jpg&er=1&src=http%3A%2F%2Fpic2.52pk.com%2Ffiles%2Fallimg%2F170919%2F1JF5M52-7.jpg"></a>
+        </li>
+      </ul>
+      <a href="#" class="btn pre">
+        <</a>
+          <a href="#" class="btn next">></a>
+          <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+    </div>
+  </div>
+  <!--services-->
+
+  <div id="services" class="layout chearfix">
+    <h1>SERVICES</h1>
+    <p>Lorem ipsum dolor sit amet consectetur.</p>
+    <div class="chearfix">
+      <div>
+        <img src="http://vanillaware.co.jp/image/button_osl.jpg">
+        <p>E-Commerce</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni,
+          dicta impedit.</p>
+      </div>
+      <div>
+        <img src="http://vanillaware.co.jp/image/button_oboro.jpg">
+        <p>E-Commerce</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni,
+          dicta impedit.</p>
+      </div>
+      <div>
+        <img src="http://vanillaware.co.jp/image/button_13.jpg">
+        <p>E-Commerce</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni,
+          dicta impedit.</p>
+      </div>
+    </div>
+  </div>
+  <!--portfolio-->
+  <div id="portfolio" class="chearfix">
+    <div class="layout chearfix">
+      <h1>PORTFOLIO</h1>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <div class="wrap">
+        <a href="#">
+          <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg">
+        </a>
+        <!--图片比例问题，a标签下留有空隙-->
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg"></a>
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg"></a>
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg"></a>
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg"></a>
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=52366948,2445770512&fm=11&gp=0.jpg"></a>
+        <div class="info">
+          <p>Round Icons</p>
+          <p>Graphic Design</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--lazy-->
+  <div id="photo">
+    <h1>PHOTO</h1>
+    <ul class="lazy">
+    </ul>
+    <a href="#">加载更多</a>
+  </div>
+
+  <!--about-->
+  <div id="about" class="layout">
+    <h1>ABOUT</h1>
+    <p>Lorem ipsum dolor sit amet consectetur.</p>
+    <ul>
+      <li>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495045796932&di=2a3790669bc9484ff1b9f75c4620ae44&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FyjDy3i5LVI4VX4Mg145TOg%3D%3D%2F7917073058222393729.jpg">
+        <div class="summary">
+          <time>2009-2011</time>
+          <h2>Our Humble Beginnings</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus
+            qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+        </div>
+      </li>
+      <li><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495640620&di=a037bd7d7ed8fcb237fae08785d425a5&imgtype=jpg&er=1&src=http%3A%2F%2Feasyread.ph.126.net%2FwyXus0o2OiwXGlx6mIn_tw%3D%3D%2F7916980699244650295.jpg">
+        <div class="summary">
+          <time>2009-2011</time>
+          <h2>Our Humble Beginnings</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus
+            qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+        </div>
+      </li>
+      <li>
+        <div>BE PART OF OUR STORY!</div>
+      </li>
+    </ul>
+  </div>
+  <!--team-->
+  <div id="team">
+    <div class="layout">
+      <h1>OUR AMAZING TEAM</h1>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <ul class="chearfix">
+        <li class="float"><img src="https://imgsa.baidu.com/forum/pic/item/47ead8ca7bcb0a46c00a10356163f6246b60afaf.jpg">
+          <div>
+            <h3>Kay Garland</h3>
+            <p>Lead Designer</p>
+            <ul>
+              <li>
+                <a class="iconfont icon-fb" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tuite_twitter-copy" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tumblr" href="#"></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="float">
+          <img src="https://imgsa.baidu.com/forum/pic/item/5ed739d3d539b60073a295bbe350352ac65cb763.jpg">
+          <div>
+            <h3>Kay Garland</h3>
+            <p>Lead Designer</p>
+            <ul>
+              <li>
+                <a class="iconfont icon-fb" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tuite_twitter-copy" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tumblr" href="#"></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="float">
+          <img src="https://imgsa.baidu.com/forum/pic/item/f5106463f6246b603b402978e1f81a4c510fa20d.jpg">
+          <div>
+            <h3>Kay Garland</h3>
+            <p>Lead Designer</p>
+            <ul>
+              <li>
+                <a class="iconfont icon-fb" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tuite_twitter-copy" href="#"></a>
+              </li>
+              <li>
+                <a class="iconfont icon-tumblr" href="#"></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis,
+        totam corporis ea, alias ut unde.</p>
+    </div>
+  </div>
+  <div id="link">
+    <div class="layout">
+      <ul>
+        <li>
+          <a href=""><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/envato.jpg"></a>
+        </li>
+        <li>
+          <a href=""><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/designmodo.jpg"
+             ></a>
+        </li>
+        <li>
+          <a href=""><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/themeforest.jpg"
+             ></a>
+        </li>
+        <li>
+          <a href=""><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/creative-market.jpg"
+             ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--scontact-us-->
+  <div id="contact-us">
+    <div class="c-font layout">
+      <h1>CONTACT US</h1>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <div class="c-form">
+        <form action="">
+          <ul>
+            <li> <input type="text" id="name" placeholder="YOUR NAME *"></li>
+            <li> <input type="text" id="email" placeholder="YOUR EMAIL *"></li>
+            <li> <input type="text" id="phone" placeholder="YOUR PHONE *"></li>
+          </ul>
+          <textarea class="c-textarea" name="" id="" cols="30" rows="10" placeholder="YOUR MESSAGE *"></textarea>
+          <button class="c-button" type="submit">SEND MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--footer-->
+  <div id="footer">
+    <div class="f-font layout">
+      <ul class="center">
+        <li>
+          <span>Copyright &copy Your Website 2014</span>
+        </li>
+        <li>
+          <ul>
+            <li>
+              <a class="iconfont icon-fb" href="#"></a>
+            </li>
+            <li>
+              <a class="iconfont icon-tuite_twitter-copy" href="#"></a>
+            </li>
+            <li>
+              <a class="iconfont icon-tumblr" href="#"></a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--gotop-->
+  <div id="gotop">Gotop</div>
+</body>
+<script data-main='./src/app/index.js' src="./require.js"></script>
+
+</html>
